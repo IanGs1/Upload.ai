@@ -22,3 +22,15 @@ Content-Type: application/json
 {
     "prompt": "Lista de química, estequiometria"
 }
+
+###
+
+# @name create-ai-completition
+POST http://localhost:3333/ai/completition
+Content-Type: application/json
+
+{
+    "videoId": "343dd571-495c-4dec-8992-5b9032f1f782",
+    "template": "Gere um resumo sucinto da transcrição do vídeo informada a seguir: '''{transcription}'''",
+    "temperature": 0.5
+}
