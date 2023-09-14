@@ -1,3 +1,4 @@
+# @name upload
 POST http://localhost:3333/videos
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
@@ -11,3 +12,13 @@ Content-Type: audio/mp3
 
 < ./example.mp3
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# @name create-transcription
+POST http://localhost:3333/videos/343dd571-495c-4dec-8992-5b9032f1f782/transcription
+Content-Type: application/json
+
+{
+    "prompt": "Lista de química, estequiometria"
+}
