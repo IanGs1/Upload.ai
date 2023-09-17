@@ -5,12 +5,13 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 
-import { ChangeEvent, FormEvent, useMemo, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 import { getFFmpeg } from "@/lib/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 
 import { api } from "@/lib/axios";
+import { text } from "stream/consumers";
 
 type Status = 'waiting' | 'converting' | 'uploading' | 'generating' | 'success';
 
@@ -26,8 +27,12 @@ interface VideoInputFormProps {
 }
 
 export function VideoInputForm(props: VideoInputFormProps) {
-    const [ videoFile, setVideoFile ] = useState<File | null>(null);
+    const [videoFile, setVideoFile] = useState<File | null>(null);
     const [status, setStatus] = useState<Status>('waiting');
+
+    useEffect(() => {
+        setStatus('waiting');
+    }, [videoFile]);
 
     const promptInputRef = useRef<HTMLTextAreaElement>(null);
 
